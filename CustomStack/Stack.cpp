@@ -1,5 +1,13 @@
 #include "Stack.h"
 
+Stack::~Stack()
+{
+	while (!Empty()) 
+	{
+		Pop();
+	}
+}
+
 void Stack::Push(int val)
 {
 	Element* ptrToPreviousElement{ tail };
