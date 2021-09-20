@@ -1,3 +1,4 @@
+#pragma warning(disable: 4820)
 #pragma once
 
 class Stack
@@ -10,17 +11,18 @@ private:
 		Element* next;
 	};
 public:
-	 Stack()			 = default;
-	 Stack(const Stack&) = delete;
+	 Stack() = default;
+	 Stack(const Stack& other);
 	~Stack();
 
-	Stack& operator=(const Stack&) = delete;
+	Stack& operator=(const Stack& rhs);
 
 	void Push(int val);
 	int  Pop();
 	int  Size() const;
 	bool Empty() const;
 private:
+	Element* head{ nullptr };
 	Element* tail{ nullptr };
 	int		 size{ 0 };
 };

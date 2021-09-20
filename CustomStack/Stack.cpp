@@ -1,5 +1,13 @@
 #include "Stack.h"
 
+Stack::Stack(const Stack& other)
+{
+	if (other.size > 0)
+	{
+		*this = other;
+	}
+}
+
 Stack::~Stack()
 {
 	while (!Empty()) 
@@ -8,13 +16,39 @@ Stack::~Stack()
 	}
 }
 
+Stack& Stack::operator=(const Stack& rhs)
+{
+	if (this == &rhs)
+	{
+		return *this;
+	}
+
+	while (!Empty())
+	{
+		Pop();
+	}
+
+	Element* currentElement{ rhs.head };
+	while (currentElement)
+	{
+		Push(currentElement->value);
+		currentElement = currentElement->next;
+	}
+
+	return *this;
+}
+
 void Stack::Push(int val)
 {
 	Element* ptrToPreviousElement{ tail };
 	tail = new Element{ val, ptrToPreviousElement, nullptr };
 	++size;
 	
-	if (size > 1)
+	if (size == 1)
+	{
+		head = tail;
+	}
+	else
 	{
 		ptrToPreviousElement->next = tail;
 	}
