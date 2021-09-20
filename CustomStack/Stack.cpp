@@ -4,13 +4,12 @@ void Stack::Push(int val)
 {
 	Element* ptrToPreviousElement{ tail };
 	tail = new Element{ val, ptrToPreviousElement, nullptr };
-
-	if (ptrToPreviousElement)
+	++size;
+	
+	if (size > 1)
 	{
 		ptrToPreviousElement->next = tail;
 	}
-
-	++size;
 }
 
 int Stack::Pop()
@@ -21,7 +20,18 @@ int Stack::Pop()
 	}
 
 	int returnVal{ tail->value };
-	tail = tail->previous;
+
+	if (Size() == 1)
+	{
+		delete tail;
+		tail = nullptr;
+	}
+	else
+	{
+		tail = tail->previous;
+		delete tail->next;
+		tail->next = nullptr;
+	}
 
 	--size;
 
