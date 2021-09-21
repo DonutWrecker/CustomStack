@@ -21,6 +21,7 @@ public:
 	int  Pop();
 	int  Size() const;
 	bool Empty() const;
+	int	 Top() const;
 private:
 	Element* head{ nullptr };
 	Element* tail{ nullptr };

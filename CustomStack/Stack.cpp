@@ -89,3 +89,8 @@ bool Stack::Empty() const
 {
 	return size == 0;
 }
+
+int Stack::Top() const
+{
+	return tail->value;
+}
