@@ -2,10 +2,7 @@
 
 Stack::Stack(const Stack& other)
 {
-	if (other.size > 0)
-	{
-		*this = other;
-	}
+	*this = other;
 }
 
 Stack::~Stack()
