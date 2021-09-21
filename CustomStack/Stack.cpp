@@ -28,6 +28,11 @@ Stack& Stack::operator=(const Stack& rhs)
 		Pop();
 	}
 
+	if (rhs.Empty())
+	{
+		return *this;
+	}
+
 	Element* currentElement{ rhs.head };
 	while (currentElement)
 	{
