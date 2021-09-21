@@ -22,6 +22,7 @@ public:
 	int  Size() const;
 	bool Empty() const;
 	int	 Top() const;
+	void Swap(Stack& other);
 private:
 	Element* head{ nullptr };
 	Element* tail{ nullptr };

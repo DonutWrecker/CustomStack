@@ -94,3 +94,48 @@ int Stack::Top() const
 {
 	return tail->value;
 }
+
+void Stack::Swap(Stack& other)
+{
+	if (this == &other)
+	{
+		return;
+	}
+
+	if (Empty() && other.Empty())
+	{
+		return;
+	}
+
+	if (Empty())
+	{
+		head = other.head;
+		tail = other.tail;
+		other.head = nullptr;
+		other.tail = nullptr;
+		size = other.size;
+		other.size = 0;
+	}
+	else if (other.Empty())
+	{
+		other.head = head;
+		other.tail = tail;
+		head = nullptr;
+		tail = nullptr;
+		other.size = size;
+		size = 0;
+	}
+	else
+	{
+		Element* tempHead{ head };
+		Element* tempTail{ tail };
+		int tempSize{ size };
+
+		head = other.head;
+		tail = other.tail;
+		other.head = tempHead;
+		other.tail = tempTail;
+		size = other.size;
+		other.size = tempSize;
+	}
+}
